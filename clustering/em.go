@@ -85,6 +85,48 @@ func (em *ExpectationMaximization) Fit(inst base.FixedDataGrid) error {
 	return nil
 }
 
+// FitWithStartParams method - fast generates the component parameters (means and covariance matrices)
+func (em *ExpectationMaximization) FitWithStartParams(inst base.FixedDataGrid, p Params) error {
+	// Numeric Attrs
+	attrs := base.NonClassAttributes(inst)
+	attrSpecs := base.ResolveAttributes(inst, attrs)
+
+	_, n_obs := inst.Size()
+	n_feats := len(attrs)
+
+	if n_obs < em.n_comps {
+		return InsufficientDataError
+	}
+
+	// Build the input matrix
+	X := mat.NewDense(n_obs, n_feats, nil)
+	inst.MapOverRows(attrSpecs, func(row [][]byte, i int) (bool, error) {
+		for j, r := range row {
+			X.Set(i, j, base.UnpackBytesToFloat(r))
+		}
+		return true, nil
+	})
+
+	// Initialize the parameter distance
+	dist := math.Inf(1)
+
+	// Iterate until convergence
+	for {
+		if dist < em.eps {
+			break
+		}
+		y_new := expectation(X, p, em.n_comps)
+		p_new := maximization(X, y_new, p, em.n_comps)
+		dist = distance(p, p_new)
+		p = p_new
+	}
+
+	em.fitted = true
+	em.attrs = attrs
+	em.Params = p
+	return nil
+}
+
 // Predict method - returns a ClusterMap of components and row ids
 func (em *ExpectationMaximization) Predict(inst base.FixedDataGrid) (ClusterMap, error) {
 	if !em.fitted {
