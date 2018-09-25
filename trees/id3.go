@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/sjwhitworth/golearn/base"
-	"github.com/sjwhitworth/golearn/evaluation"
+	"github.com/norand94/golearn/base"
+	"github.com/norand94/golearn/evaluation"
 	"sort"
 )
 

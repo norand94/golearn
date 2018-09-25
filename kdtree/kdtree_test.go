@@ -3,7 +3,7 @@ package kdtree
 import (
 	"testing"
 
-	"github.com/sjwhitworth/golearn/metrics/pairwise"
+	"github.com/norand94/golearn/metrics/pairwise"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

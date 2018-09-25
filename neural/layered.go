@@ -2,9 +2,9 @@ package neural
 
 import (
 	"fmt"
+	"github.com/norand94/golearn/base"
+	"github.com/norand94/golearn/filters"
 	"gonum.org/v1/gonum/mat"
-	"github.com/sjwhitworth/golearn/base"
-	"github.com/sjwhitworth/golearn/filters"
 	"math"
 	"math/rand"
 )

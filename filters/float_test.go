@@ -1,7 +1,7 @@
 package filters
 
 import (
-	"github.com/sjwhitworth/golearn/base"
+	"github.com/norand94/golearn/base"
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 )

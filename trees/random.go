@@ -2,7 +2,7 @@ package trees
 
 import (
 	"fmt"
-	"github.com/sjwhitworth/golearn/base"
+	"github.com/norand94/golearn/base"
 	"math/rand"
 )
 

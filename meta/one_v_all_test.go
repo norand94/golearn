@@ -2,9 +2,9 @@ package meta
 
 import (
 	"fmt"
-	"github.com/sjwhitworth/golearn/base"
-	"github.com/sjwhitworth/golearn/evaluation"
-	"github.com/sjwhitworth/golearn/linear_models"
+	"github.com/norand94/golearn/base"
+	"github.com/norand94/golearn/evaluation"
+	"github.com/norand94/golearn/linear_models"
 	. "github.com/smartystreets/goconvey/convey"
 	"io/ioutil"
 	"os"
